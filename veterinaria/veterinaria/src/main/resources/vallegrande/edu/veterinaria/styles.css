@@ -1,0 +1,117 @@
+/* ==========================================
+   ESTILOS GENERALES Y RAÍZ
+   ========================================== */
+.root {
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-background-color: #F4F7F6;
+}
+
+/* ==========================================
+   PANEL IZQUIERDO (BIENVENIDA)
+   ========================================== */
+.welcome-panel {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 35;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 15, 0, 0, 5);
+}
+
+.logo-text {
+    -fx-font-size: 48px;
+}
+
+.app-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A252C;
+}
+
+.app-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7F8C8D;
+    -fx-wrap-text: true;
+}
+
+/* ==========================================
+   PANEL DERECHO (FORMULARIO Y ACCIONES)
+   ========================================== */
+.card-panel {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 30;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 20, 0, 0, 6);
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #566573;
+}
+
+.custom-input {
+    -fx-background-color: #F8F9FA;
+    -fx-border-color: #DCDDE1;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 13px;
+}
+
+.custom-input:focused {
+    -fx-border-color: #1A73E8;
+    -fx-background-color: #FFFFFF;
+}
+
+/* ==========================================
+   BOTONES Y ACCIONES
+   ========================================== */
+.btn-primary {
+    -fx-background-color: #1A73E8;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1557B0;
+}
+
+.btn-secondary {
+    -fx-background-color: #2ECC71;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #27AE60;
+}
+
+.btn-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7F8C8D;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.btn-link:hover {
+    -fx-text-fill: #1A73E8;
+    -fx-underline: true;
+}
+
+.footer-text {
+    -fx-font-size: 11px;
+    -fx-text-fill: #95A5A6;
+}

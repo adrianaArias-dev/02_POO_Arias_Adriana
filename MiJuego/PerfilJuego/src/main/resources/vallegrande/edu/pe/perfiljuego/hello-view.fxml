@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0"
+      style="-fx-background-color: linear-gradient(to bottom right, #4e54c8, #8f94fb);"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="vallegrande.edu.pe.perfiljuego.Controller.HelloController">
+
+    <padding>
+        <Insets top="25" bottom="25" left="25" right="25"/>
+    </padding>
+
+    <!-- Tarjeta Central de Juego -->
+    <VBox alignment="CENTER" spacing="16.0"
+          style="-fx-background-color: #ffffff; -fx-background-radius: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 15, 0, 0, 8);"
+          maxWidth="320">
+
+        <padding>
+            <Insets top="25" bottom="25" left="25" right="25"/>
+        </padding>
+
+        <Label text="🎯 Adivina el Número"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+
+        <Label fx:id="lblResultado" text="Adivina un número entre 1 y 100"
+               wrapText="true" maxWidth="260" alignment="CENTER"
+               style="-fx-font-size: 13px; -fx-text-fill: #4a5568; -fx-font-weight: bold;"/>
+
+        <TextField fx:id="txtNumero" promptText="Escribe tu número" maxWidth="220"
+                   style="-fx-font-size: 14px; -fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: #cbd5e0; -fx-padding: 8px; -fx-alignment: center;"/>
+
+        <Button fx:id="btnAdivinar" text="Adivinar" onAction="#onAdivinarClick" maxWidth="220"
+                style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d); -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 8px; -fx-cursor: hand;"/>
+
+        <Label fx:id="lblIntentos" text="Intentos: 0"
+               style="-fx-font-size: 13px; -fx-text-fill: #718096; -fx-font-weight: bold;"/>
+
+        <Button fx:id="btnReiniciar" text="🔄 Reiniciar Juego" onAction="#onReiniciarClick" maxWidth="220"
+                style="-fx-background-color: linear-gradient(to right, #ff416c, #ff4b2b); -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 8px; -fx-cursor: hand;"/>
+
+    </VBox>
+
+</VBox>
