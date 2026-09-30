@@ -1,276 +1,276 @@
 package vallegrande.edu.pe.misistema.view;
 
+
+import java.util.List;
+
+
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+
+import vallegrande.edu.pe.misistema.model.Usuario;
+
+
 public class MainView extends BorderPane {
+
+
+    // Botones del menú
     private Button btnInicio;
     private Button btnUsuarios;
-    private Button btnProductos;
-    private Button btnReportes;
-    private Button btnConfiguracion;
-    private Button btnCitas;
 
-    // Paleta coquette
-    private final String ROSA_FUERTE   = "#E893B3";
-    private final String ROSA_SUAVE    = "#F7D6E0";
-    private final String ROSA_PASTEL   = "#FDEDF3";
-    private final String CREMA         = "#FFF8F3";
-    private final String VERDE_SALVIA  = "#B7D3C0";
-    private final String TEXTO_OSCURO  = "#6B3F51";
 
-    public MainView(){
-        setStyle("-fx-background-color: " + CREMA + ";");
+    // Tabla donde mostraremos los usuarios
+    private TableView<Usuario> tablaUsuarios;
+
+
+    public MainView() {
+
+
+        // Creamos el menú
         crearMenu();
+
+
+        // Creamos la tabla
+        crearTabla();
+
+
+        // Mostramos Inicio al abrir el sistema
         mostrarInicio();
     }
 
-    private void crearMenu(){
-        VBox menu = new VBox(16);
-        menu.setPadding(new Insets(28, 22, 28, 22));
-        menu.setPrefWidth(230);
 
-        Label titulo = new Label("🎀 Mi Sistema");
+    // Crea el menú lateral
+    private void crearMenu() {
+
+
+        // Contenedor vertical para el menú
+        VBox menu = new VBox(15);
+
+
+        // Espaciado interno
+        menu.setPadding(new Insets(25));
+
+
+        // Ancho del menú
+        menu.setPrefWidth(220);
+
+
+        // Título del sistema
+        Label titulo = new Label("MI SISTEMA");
+
+
         titulo.setStyle(
-                "-fx-font-size: 21px;" +
-                        "-fx-font-family: 'Georgia';" +
+                "-fx-font-size: 20px;" +
                         "-fx-font-weight: bold;" +
                         "-fx-text-fill: white;"
         );
 
-        Label subtitulo = new Label("✧ panel de control ✧");
-        subtitulo.setStyle(
-                "-fx-font-size: 11px;" +
-                        "-fx-text-fill: " + ROSA_PASTEL + ";" +
-                        "-fx-font-style: italic;"
-        );
 
-        VBox encabezado = new VBox(2, titulo, subtitulo);
-        encabezado.setPadding(new Insets(0, 0, 15, 0));
+        // Creamos los botones
+        btnInicio = crearBoton("Inicio");
 
-        btnInicio        = crearBoton("🏠  Inicio");
-        btnUsuarios      = crearBoton("💌  Usuarios");
-        btnProductos     = crearBoton("🎁  Productos");
-        btnReportes      = crearBoton("📈  Reportes");
-        btnConfiguracion = crearBoton("🩰  Configuración");
-        btnCitas         = crearBoton("🌸  Citas");
 
+        btnUsuarios = crearBoton("Usuarios");
+
+
+        // Agregamos los elementos al menú
         menu.getChildren().addAll(
-                encabezado,
+                titulo,
                 btnInicio,
-                btnUsuarios,
-                btnProductos,
-                separador(),
-                btnReportes,
-                btnConfiguracion,
-                btnCitas
+                btnUsuarios
         );
 
+
+        // Color del menú
         menu.setStyle(
-                "-fx-background-color: linear-gradient(to bottom, " + ROSA_FUERTE + ", #D97CA0);" +
-                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0, 3, 0);"
+                "-fx-background-color: #2563EB;"
         );
+
+
+        // Colocamos el menú a la izquierda
         setLeft(menu);
     }
 
-    private Label separador(){
-        Label linea = new Label("· · · · · · · · · · · ·");
-        linea.setStyle("-fx-text-fill: " + ROSA_PASTEL + "; -fx-font-size: 11px;");
-        linea.setAlignment(Pos.CENTER);
-        linea.setMaxWidth(Double.MAX_VALUE);
-        linea.setAlignment(Pos.CENTER);
-        return linea;
-    }
 
-    private Button crearBoton(String texto){
+    // Crea un botón del menú
+    private Button crearBoton(String texto) {
         Button boton = new Button(texto);
-        boton.setPrefWidth(185);
-        boton.setPrefHeight(42);
-        boton.setAlignment(Pos.CENTER_LEFT);
-        String base =
-                "-fx-background-color: " + ROSA_PASTEL + ";" +
-                        "-fx-text-fill: " + TEXTO_OSCURO + ";" +
-                        "-fx-font-size: 13.5px;" +
-                        "-fx-font-family: 'Georgia';" +
-                        "-fx-background-radius: 20;" +
-                        "-fx-padding: 0 0 0 14;" +
-                        "-fx-cursor: hand;" +
-                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 4, 0, 1, 1);";
-        boton.setStyle(base);
-
-        boton.setOnMouseEntered(e -> boton.setStyle(base.replace(ROSA_PASTEL, "white")));
-        boton.setOnMouseExited(e -> boton.setStyle(base));
-
+        boton.setPrefWidth(170);
+        boton.setPrefHeight(40);
         return boton;
     }
 
-    public void mostrarInicio(){
-        VBox contenido = new VBox(12);
+
+    // Muestra la pantalla de inicio
+    public void mostrarInicio() {
+
+
+        // Contenedor del contenido
+        VBox contenido = new VBox(10);
+
+
+        // Centramos el contenido
         contenido.setAlignment(Pos.CENTER);
-        Label titulo = new Label("✿ Bienvenida ✿");
+
+
+        // Título
+        Label titulo = new Label("BIENVENIDO");
+
+
         titulo.setStyle(
-                "-fx-font-size: 30px;" +
-                        "-fx-font-family: 'Georgia';" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-text-fill: " + TEXTO_OSCURO + ";"
+                "-fx-font-size: 28px;" +
+                        "-fx-font-weight: bold;"
         );
-        Label texto = new Label("Panel principal de tu sistema, con mucho cariño 🩷");
-        texto.setStyle("-fx-font-size: 14px; -fx-text-fill: #A9718B; -fx-font-style: italic;");
-        contenido.getChildren().addAll(titulo, texto);
-        setCenter(envolver(contenido));
+
+
+        // Texto de bienvenida
+        Label texto = new Label(
+                "Sistema de gestión de usuarios"
+        );
+
+
+        // Agregamos los elementos
+        contenido.getChildren().addAll(
+                titulo,
+                texto
+        );
+
+
+        // Mostramos el contenido en el centro
+        setCenter(contenido);
     }
 
-    public void mostrarUsuarios(){
-        VBox contenido = seccionBase("USUARIOS", "Personitas que forman parte del sistema 🎀");
-        HBox tarjetas = new HBox(16);
-        tarjetas.setAlignment(Pos.CENTER_LEFT);
-        tarjetas.getChildren().addAll(
-                crearTarjeta("Carlos Perez", "Administrador"),
-                crearTarjeta("Maria Lopez", "Vendedora"),
-                crearTarjeta("Piero Ramos", "Supervisor")
-        );
-        contenido.getChildren().add(tarjetas);
-        setCenter(envolver(contenido));
-    }
 
-    public void mostrarProductos(){
-        VBox contenido = seccionBase("PRODUCTOS", "Catálogo disponible en tienda 🎁");
-        HBox tarjetas = new HBox(16);
-        tarjetas.setAlignment(Pos.CENTER_LEFT);
-        tarjetas.getChildren().addAll(
-                crearTarjeta("Laptop Lenovo", "S/ 2500"),
-                crearTarjeta("Mouse Logitech", "S/ 80"),
-                crearTarjeta("Teclado Mecánico", "S/ 180")
-        );
-        contenido.getChildren().add(tarjetas);
-        setCenter(envolver(contenido));
-    }
+    // Muestra la pantalla de usuarios
+    public void mostrarUsuarios() {
 
-    public void mostrarReportes(){
-        VBox contenido = seccionBase("REPORTES", "Resumen general del sistema 📈");
-        HBox tarjetas = new HBox(16);
-        tarjetas.setAlignment(Pos.CENTER_LEFT);
-        tarjetas.getChildren().addAll(
-                crearTarjeta("Ventas del Mes", "S/ 12,300"),
-                crearTarjeta("Nuevos Clientes", "34"),
-                crearTarjeta("Productos Vendidos", "215")
-        );
-        contenido.getChildren().add(tarjetas);
-        setCenter(envolver(contenido));
-    }
 
-    public void mostrarConfiguracion(){
-        VBox contenido = seccionBase("CONFIGURACIÓN", "Ajustes generales, a tu gusto 🩰");
-        VBox opciones = new VBox(10);
-        opciones.getChildren().addAll(
-                crearOpcion("🔔  Notificaciones", "Activadas"),
-                crearOpcion("🌐  Idioma", "Español"),
-                crearOpcion("🎨  Tema", "Rosa pastel"),
-                crearOpcion("🔒  Seguridad", "Verificación en dos pasos")
-        );
-        contenido.getChildren().add(opciones);
-        setCenter(envolver(contenido));
-    }
+        // Contenedor del contenido
+        VBox contenido = new VBox(20);
 
-    public void mostrarCitas(){
-        VBox contenido = seccionBase("CITAS", "Tu agenda del día 🌸");
-        HBox tarjetas = new HBox(16);
-        tarjetas.setAlignment(Pos.CENTER_LEFT);
-        tarjetas.getChildren().addAll(
-                crearTarjeta("Cita con Carlos", "10:00 am"),
-                crearTarjeta("Cita con Maria", "1:00 pm"),
-                crearTarjeta("Cita con Piero", "4:30 pm")
-        );
-        contenido.getChildren().add(tarjetas);
-        setCenter(envolver(contenido));
-    }
 
-    // ===== Helpers de estilo =====
+        contenido.setPadding(new Insets(30));
 
-    private VBox seccionBase(String tituloTexto, String subtituloTexto){
-        VBox contenido = new VBox(18);
-        contenido.setPadding(new Insets(35));
 
-        Label titulo = new Label(tituloTexto);
+        // Título de la pantalla
+        Label titulo = new Label("USUARIOS");
+
+
         titulo.setStyle(
-                "-fx-font-size: 25px;" +
-                        "-fx-font-family: 'Georgia';" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-text-fill: " + TEXTO_OSCURO + ";"
-        );
-        Label subtitulo = new Label(subtituloTexto);
-        subtitulo.setStyle("-fx-font-size: 13px; -fx-text-fill: #A9718B; -fx-font-style: italic;");
-
-        contenido.getChildren().addAll(titulo, subtitulo);
-        return contenido;
-    }
-
-    private HBox envolver(VBox contenido){
-        HBox wrapper = new HBox(contenido);
-        wrapper.setAlignment(Pos.CENTER);
-        wrapper.setStyle("-fx-background-color: " + CREMA + ";");
-        HBox.setHgrow(contenido, javafx.scene.layout.Priority.ALWAYS);
-        return wrapper;
-    }
-
-    private VBox crearTarjeta(String titulo, String detalle){
-        VBox tarjeta = new VBox(8);
-        tarjeta.setPadding(new Insets(20));
-        tarjeta.setPrefWidth(185);
-        tarjeta.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 18;" +
-                        "-fx-border-color: " + ROSA_SUAVE + ";" +
-                        "-fx-border-width: 1.5;" +
-                        "-fx-border-radius: 18;" +
-                        "-fx-effect: dropshadow(gaussian, rgba(232,147,179,0.35), 8, 0, 2, 2);"
-        );
-        Label nombre = new Label(titulo);
-        nombre.setStyle(
-                "-fx-font-size: 15px;" +
-                        "-fx-font-family: 'Georgia';" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-text-fill: " + TEXTO_OSCURO + ";"
-        );
-        Label info = new Label(detalle);
-        info.setStyle("-fx-font-size: 12.5px; -fx-text-fill: " + ROSA_FUERTE + ";");
-        tarjeta.getChildren().addAll(nombre, info);
-        return tarjeta;
-    }
-
-    private HBox crearOpcion(String etiqueta, String valor){
-        HBox fila = new HBox();
-        fila.setAlignment(Pos.CENTER_LEFT);
-        fila.setPrefWidth(400);
-        fila.setPadding(new Insets(12, 18, 12, 18));
-        fila.setStyle(
-                "-fx-background-color: white;" +
-                        "-fx-background-radius: 14;" +
-                        "-fx-border-color: " + ROSA_SUAVE + ";" +
-                        "-fx-border-width: 1;" +
-                        "-fx-border-radius: 14;"
+                "-fx-font-size: 26px;" +
+                        "-fx-font-weight: bold;"
         );
 
-        Label lbl = new Label(etiqueta);
-        lbl.setStyle("-fx-font-size: 13px; -fx-text-fill: " + TEXTO_OSCURO + "; -fx-font-weight: bold;");
-        lbl.setPrefWidth(220);
 
-        Label val = new Label(valor);
-        val.setStyle("-fx-font-size: 13px; -fx-text-fill: " + ROSA_FUERTE + ";");
+        // Agregamos título y tabla
+        contenido.getChildren().addAll(
+                titulo,
+                tablaUsuarios
+        );
 
-        fila.getChildren().addAll(lbl, val);
-        return fila;
+
+        // Mostramos el contenido en el centro
+        setCenter(contenido);
     }
 
-    public Button getBtnInicio(){ return btnInicio; }
-    public Button getBtnUsuarios(){ return btnUsuarios; }
-    public Button getBtnProductos(){ return btnProductos; }
-    public Button getBtnReportes(){ return btnReportes; }
-    public Button getBtnConfiguracion(){ return btnConfiguracion; }
-    public Button getBtnCitas(){ return btnCitas; }
+
+    // Crea la tabla de usuarios
+    private void crearTabla() {
+
+
+        // Creamos la tabla
+        tablaUsuarios = new TableView<>();
+
+
+        // Creamos las columnas
+        TableColumn<Usuario, Integer> colId =
+                new TableColumn<>("ID");
+
+
+        TableColumn<Usuario, String> colNombre =
+                new TableColumn<>("Nombre");
+
+
+        TableColumn<Usuario, String> colApellido =
+                new TableColumn<>("Apellido");
+
+
+        TableColumn<Usuario, String> colCorreo =
+                new TableColumn<>("Correo");
+
+
+        TableColumn<Usuario, String> colEstado =
+                new TableColumn<>("Estado");
+
+
+        // Indicamos qué atributo mostrará cada columna
+        colId.setCellValueFactory(
+                new PropertyValueFactory<>("id")
+        );
+
+
+        colNombre.setCellValueFactory(
+                new PropertyValueFactory<>("nombre")
+        );
+
+
+        colApellido.setCellValueFactory(
+                new PropertyValueFactory<>("apellido")
+        );
+
+
+        colCorreo.setCellValueFactory(
+                new PropertyValueFactory<>("correo")
+        );
+
+
+        colEstado.setCellValueFactory(
+                new PropertyValueFactory<>("estado")
+        );
+
+
+        // Agregamos las columnas a la tabla
+        tablaUsuarios.getColumns().addAll(
+                colId,
+                colNombre,
+                colApellido,
+                colCorreo,
+                colEstado
+        );
+    }
+
+
+    // Recibe los usuarios y los muestra en la tabla
+    public void mostrarDatosUsuarios(List<Usuario> usuarios) {
+
+
+        // Convertimos la lista a una colección observable
+        tablaUsuarios.setItems(
+                FXCollections.observableArrayList(usuarios)
+        );
+    }
+
+
+    // Permite que el Controller acceda al botón Inicio
+    public Button getBtnInicio() {
+
+
+        return btnInicio;
+    }
+
+
+    // Permite que el Controller acceda al botón Usuarios
+    public Button getBtnUsuarios() {
+
+
+        return btnUsuarios;
+    }
 }

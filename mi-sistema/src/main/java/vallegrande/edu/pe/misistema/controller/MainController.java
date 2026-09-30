@@ -1,22 +1,32 @@
 package vallegrande.edu.pe.misistema.controller;
 
+import vallegrande.edu.pe.misistema.model.Usuario;
+import vallegrande.edu.pe.misistema.model.UsuarioDAO;
 import vallegrande.edu.pe.misistema.view.MainView;
+
+import java.util.List;
 
 public class MainController {
 
     private MainView view;
+    private UsuarioDAO usuarioDAO;
 
     public MainController(MainView view){
         this.view = view;
+        usuarioDAO = new UsuarioDAO();
         configurarEventos();
     }
-
-    private void configurarEventos(){
-        view.getBtnInicio().setOnAction(e-> view.mostrarInicio());
-        view.getBtnUsuarios().setOnAction(e-> view.mostrarUsuarios());
-        view.getBtnProductos().setOnAction(e-> view.mostrarProductos());
-        view.getBtnReportes().setOnAction(e-> view.mostrarReportes());
-        view.getBtnConfiguracion().setOnAction(e-> view.mostrarConfiguracion());
-        view.getBtnCitas().setOnAction(e-> view.mostrarCitas());
+    public void configurarEventos() {
+        view.getBtnInicio().setOnAction(e -> {
+            view.mostrarInicio();
+        });
+        view.getBtnUsuarios().setOnAction(e -> {
+            view.mostrarUsuarios();
+            cargarUsuarios();
+        });
+    }
+    private void cargarUsuarios(){
+        List<Usuario> usuarios = usuarioDAO.listar();
+        view.mostrarDatosUsuarios(usuarios);
     }
 }
