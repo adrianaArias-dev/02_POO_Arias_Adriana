@@ -24,9 +24,33 @@ public class MainController {
             view.mostrarUsuarios();
             cargarUsuarios();
         });
+        view.getBtnGuardar().setOnAction(e -> guardarUsuario());
     }
     private void cargarUsuarios(){
         List<Usuario> usuarios = usuarioDAO.listar();
         view.mostrarDatosUsuarios(usuarios);
+    }
+
+    // Toma los datos del formulario, valida, inserta en MySQL y refresca la tabla
+    private void guardarUsuario() {
+        Usuario u = view.obtenerUsuarioFormulario();
+
+        if (u.getNombre().isEmpty() || u.getApellido().isEmpty() || u.getCorreo().isEmpty()) {
+            view.mostrarMensaje("Completa nombre, apellido y correo.", false);
+            return;
+        }
+
+        if (!u.getCorreo().contains("@")) {
+            view.mostrarMensaje("El correo no es válido.", false);
+            return;
+        }
+
+        if (usuarioDAO.insertar(u)) {
+            view.limpiarFormulario();
+            cargarUsuarios();   // vuelve a consultar MySQL y actualiza el TableView
+            view.mostrarMensaje("Usuario registrado correctamente.", true);
+        } else {
+            view.mostrarMensaje("No se pudo registrar el usuario. Revisa la consola.", false);
+        }
     }
 }

@@ -8,11 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
@@ -31,6 +34,15 @@ public class MainView extends BorderPane {
     private TableView<Usuario> tablaUsuarios;
 
 
+    // Controles del formulario de registro
+    private TextField txtNombre;
+    private TextField txtApellido;
+    private TextField txtCorreo;
+    private ComboBox<String> cmbEstado;
+    private Button btnGuardar;
+    private Label lblMensaje;
+
+
     public MainView() {
 
 
@@ -40,6 +52,10 @@ public class MainView extends BorderPane {
 
         // Creamos la tabla
         crearTabla();
+
+
+        // Creamos el formulario de registro
+        crearFormulario();
 
 
         // Mostramos Inicio al abrir el sistema
@@ -170,9 +186,11 @@ public class MainView extends BorderPane {
         );
 
 
-        // Agregamos título y tabla
+        // Agregamos título, formulario, mensaje y tabla
         contenido.getChildren().addAll(
                 titulo,
+                crearContenedorFormulario(),
+                lblMensaje,
                 tablaUsuarios
         );
 
@@ -248,6 +266,74 @@ public class MainView extends BorderPane {
     }
 
 
+    // Crea los controles del formulario de registro
+    private void crearFormulario() {
+
+        txtNombre = new TextField();
+        txtNombre.setPromptText("Nombre");
+
+        txtApellido = new TextField();
+        txtApellido.setPromptText("Apellido");
+
+        txtCorreo = new TextField();
+        txtCorreo.setPromptText("Correo");
+
+        cmbEstado = new ComboBox<>(
+                FXCollections.observableArrayList("ACTIVO", "INACTIVO")
+        );
+        cmbEstado.setValue("ACTIVO");
+
+        btnGuardar = new Button("Guardar");
+
+        lblMensaje = new Label();
+    }
+
+
+    // Arma la fila horizontal con los controles del formulario
+    private HBox crearContenedorFormulario() {
+        HBox fila = new HBox(10);
+        fila.setAlignment(Pos.CENTER_LEFT);
+        fila.getChildren().addAll(
+                txtNombre,
+                txtApellido,
+                txtCorreo,
+                cmbEstado,
+                btnGuardar
+        );
+        return fila;
+    }
+
+
+    // Devuelve un Usuario con lo que el usuario escribió en el formulario
+    public Usuario obtenerUsuarioFormulario() {
+        Usuario u = new Usuario();
+        u.setNombre(txtNombre.getText().trim());
+        u.setApellido(txtApellido.getText().trim());
+        u.setCorreo(txtCorreo.getText().trim());
+        u.setEstado(cmbEstado.getValue());
+        return u;
+    }
+
+
+    // Limpia el formulario después de guardar
+    public void limpiarFormulario() {
+        txtNombre.clear();
+        txtApellido.clear();
+        txtCorreo.clear();
+        cmbEstado.setValue("ACTIVO");
+    }
+
+
+    // Muestra un mensaje de éxito (verde) o error (rojo)
+    public void mostrarMensaje(String texto, boolean exito) {
+        lblMensaje.setText(texto);
+        lblMensaje.setStyle(
+                "-fx-text-fill: " + (exito ? "#15803D" : "#B91C1C") + ";" +
+                        "-fx-font-weight: bold;"
+        );
+    }
+
+
     // Recibe los usuarios y los muestra en la tabla
     public void mostrarDatosUsuarios(List<Usuario> usuarios) {
 
@@ -272,5 +358,11 @@ public class MainView extends BorderPane {
 
 
         return btnUsuarios;
+    }
+
+
+    // Permite que el Controller acceda al botón Guardar
+    public Button getBtnGuardar() {
+        return btnGuardar;
     }
 }
