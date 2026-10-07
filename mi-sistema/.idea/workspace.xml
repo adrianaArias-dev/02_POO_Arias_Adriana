@@ -4,97 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f74eb70-0f0b-4da7-b658-42668a5da279" name="Changes" comment="" />
+    <list default="true" id="0f3e3674-2835-40a1-9d0d-bf5bcfeb3c2a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="1.4469706558960214" />
-      <entry key="MS500" value="3.139108259043341" />
-      <entry key="S2" value="5.20482953868104" />
-      <entry key="S5" value="6.158358805333067" />
-      <entry key="S10" value="6.774669482208978" />
-      <entry key="S30" value="10.484970006321989" />
-      <entry key="S60" value="14.296954363178859" />
-      <entry key="M2" value="17.47332264701078" />
-      <entry key="M5" value="19.994435774583213" />
-      <entry key="M10" value="20.961525770830917" />
-      <entry key="M15" value="21.299495251523524" />
-      <entry key="M30" value="21.64558709344106" />
-      <entry key="H1" value="21.821740803862046" />
-      <entry key="H2" value="21.91060562306906" />
-      <entry key="H4" value="21.955236416607946" />
-      <entry key="D1" value="21.992530164207306" />
-      <entry key="W1" value="21.998932654128" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="1.2469022975181454" />
-      <entry key="MS500" value="2.884597560098252" />
-      <entry key="S2" value="5.081666071717749" />
-      <entry key="S5" value="6.100909713231838" />
-      <entry key="S10" value="6.742935673455447" />
-      <entry key="S30" value="10.4655087429018" />
-      <entry key="S60" value="14.282263036204705" />
-      <entry key="M2" value="17.463852039906914" />
-      <entry key="M5" value="19.98996270849877" />
-      <entry key="M10" value="20.95915690781219" />
-      <entry key="M15" value="21.29788510142293" />
-      <entry key="M30" value="21.644766172830963" />
-      <entry key="H1" value="21.821326307188603" />
-      <entry key="H2" value="21.910397356128186" />
-      <entry key="H4" value="21.95513202728862" />
-      <entry key="D1" value="21.99251273035077" />
-      <entry key="W1" value="21.998930162702994" />
-    </decayedShown>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8,
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3K3FH8cFZUeu1ltRFdP4JkKVWs6" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3KMwEu8fAZ7IpNAAkrLQUFdK4qv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Application.Main.executor": "Run",
+    "Maven.mi-sistema [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "java.suggest.annotation.dependency": "false",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Downloads/mi-sistema",
+    "last_opened_file_path": "C:/Users/Usuario/Desktop/mi-sistema",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,11 +50,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3f74eb70-0f0b-4da7-b658-42668a5da279" name="Changes" comment="" />
-      <created>1790778257211</created>
+      <changelist id="0f3e3674-2835-40a1-9d0d-bf5bcfeb3c2a" name="Changes" comment="" />
+      <created>1791380639458</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1790778257211</updated>
+      <updated>1791380639458</updated>
     </task>
     <servers />
   </component>

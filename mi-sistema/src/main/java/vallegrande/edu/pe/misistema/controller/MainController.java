@@ -24,33 +24,86 @@ public class MainController {
             view.mostrarUsuarios();
             cargarUsuarios();
         });
-        view.getBtnGuardar().setOnAction(e -> guardarUsuario());
+        view.getBtnRegistrar().setOnAction(e->{
+            registrarUsuario();
+        });
+
+        view.getBtnActualizar().setOnAction(e->{
+            actualizarUsuario();
+        });
+
+        view.getBtnEliminar().setOnAction(e-> {
+            eliminarUsuario();
+        });
+
+        // SELECCIÓN + CARGA: al seleccionar una fila (clic o teclado)
+        // se llenan automáticamente los campos del formulario
+        view.getTablaUsuarios()
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, anterior, seleccionado) -> {
+                    if (seleccionado != null) {
+                        view.cargarUsuarioEnFormulario(seleccionado);
+                    }
+                });
+
     }
     private void cargarUsuarios(){
         List<Usuario> usuarios = usuarioDAO.listar();
         view.mostrarDatosUsuarios(usuarios);
     }
-
-    // Toma los datos del formulario, valida, inserta en MySQL y refresca la tabla
-    private void guardarUsuario() {
-        Usuario u = view.obtenerUsuarioFormulario();
-
-        if (u.getNombre().isEmpty() || u.getApellido().isEmpty() || u.getCorreo().isEmpty()) {
-            view.mostrarMensaje("Completa nombre, apellido y correo.", false);
+    private void registrarUsuario(){
+        if (!formularioValido()) {
             return;
         }
-
-        if (!u.getCorreo().contains("@")) {
-            view.mostrarMensaje("El correo no es válido.", false);
+        Usuario usuario = new Usuario();
+        usuario.setNombre(view.getNombre());
+        usuario.setApellido(view.getApellido());
+        usuario.setCorreo(view.getCorreo());
+        usuario.setEstado(view.getEstado());
+        usuarioDAO.insertar(usuario);
+        cargarUsuarios();
+        view.limpiarFormulario();
+    }
+    private void actualizarUsuario(){
+        Usuario usuario = view.getUsuarioSeleccionado();
+        if ( usuario == null){
+            view.mostrarMensaje("Seleccione un usuario de la tabla.");
             return;
         }
-
-        if (usuarioDAO.insertar(u)) {
-            view.limpiarFormulario();
-            cargarUsuarios();   // vuelve a consultar MySQL y actualiza el TableView
-            view.mostrarMensaje("Usuario registrado correctamente.", true);
-        } else {
-            view.mostrarMensaje("No se pudo registrar el usuario. Revisa la consola.", false);
+        if (!formularioValido()) {
+            return;
         }
+        usuario.setNombre(view.getNombre());
+        usuario.setApellido(view.getApellido());
+        usuario.setCorreo(view.getCorreo());
+        usuario.setEstado(view.getEstado());
+
+        usuarioDAO.actualizar(usuario);   // UPDATE
+        cargarUsuarios();                 // Refresco inmediato de la tabla
+        view.limpiarFormulario();
+    }
+    private void eliminarUsuario(){
+        Usuario usuario = view.getUsuarioSeleccionado();
+        if ( usuario == null){
+            view.mostrarMensaje("Seleccione un usuario de la tabla.");
+            return;
+        }
+        if (!view.confirmar("¿Eliminar a " + usuario.getNombre() + " " + usuario.getApellido() + "?")) {
+            return;
+        }
+        usuarioDAO.eliminar(usuario.getId());   // DELETE
+        cargarUsuarios();                       // Refresco inmediato de la tabla
+        view.limpiarFormulario();
+    }
+
+    // Valida que ningún campo del formulario esté vacío
+    private boolean formularioValido(){
+        if (view.getNombre().isBlank() || view.getApellido().isBlank()
+                || view.getCorreo().isBlank() || view.getEstado().isBlank()) {
+            view.mostrarMensaje("Complete todos los campos.");
+            return false;
+        }
+        return true;
     }
 }
